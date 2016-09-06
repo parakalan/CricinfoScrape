@@ -4,4 +4,6 @@ A simple project using dryscrape module in python to scrape the scores of cricke
 Dryscrape is a lightweight web scraping library for python.
 
 **To do**
-Add cron job from script using python-crontab.
+#Add cron job from script using python-crontab.
+Add options for cron.
+Run as CLI
