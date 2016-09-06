@@ -8,11 +8,15 @@ try:
     team2 = l[1].strip('\n')
 except IOError:
     print "Starting for the first time"
+    from crontab import CronTab
+    cron = CronTab()
+    job = cron.new(command = 'python /home/st/CricInfoScrape/dryscrape.py')
+    job.minute.every(2)
+    cron.write(user = 'st')
     team1 = raw_input("Enter team 1 : ")
     team2 = raw_input("Enter team 2 : ")
     f = open('teams', 'w')
     f.write(team1 + '\n' + team2)
-
 
 dryscrape.start_xvfb()
 s = dryscrape.Session(
@@ -30,3 +34,6 @@ for item in live_match_data:
             print notif
             os.system(notif)
             break
+else:
+    notif = 'export DISPLAY=:0.0 && notify-send "Sorry, live match not found"'
+    os.system(notif)
