@@ -1,8 +1,11 @@
 # CricinfoScrape
-A simple project using dryscrape module in python to scrape the scores of cricket matches from espncricinfo.
+A simple project using dryscrape module in python to scrape the scores of cricket matches from espncricinfo and send notifications.
 
-Dryscrape is a lightweight web scraping library for python.
+Setup  
+* ```pip install dryscrape```  
+* ```python score_scraper.py```
+
 
 **To do**
-Add options for cron.
-Run as CLI
+* Run as CLI
+* Show all live matches.

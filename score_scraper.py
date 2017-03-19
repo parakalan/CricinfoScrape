@@ -2,7 +2,7 @@ import dryscrape
 import os
 
 try:
-    f = open('teams')
+    f = open('/home/sudharsan/CricinfoScrape/teams')
     l = f.readlines()
     team1 = l[0].strip('\n')
     team2 = l[1].strip('\n')
@@ -10,9 +10,9 @@ except IOError:
     print "Starting for the first time"
     from crontab import CronTab
     cron = CronTab()
-    job = cron.new(command = 'python /home/st/CricInfoScrape/dryscrape.py')
+    job = cron.new(command = '/home/sudharsan/venv/bin/python /home/sudharsan/CricinfoScrape/score_scraper.py')
     job.minute.every(2)
-    cron.write(user = 'st')
+    cron.write(user = 'sudharsan')
     team1 = raw_input("Enter team 1 : ")
     team2 = raw_input("Enter team 2 : ")
     f = open('teams', 'w')
