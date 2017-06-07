@@ -1,8 +1,10 @@
 import dryscrape
 import os
+import sys
 
 try:
-    f = open('/home/sudharsan/CricinfoScrape/teams')
+    filepath = os.path.abspath(os.path.join(__file__, "../teams"))
+    f = open(filepath)
     l = f.readlines()
     team1 = l[0].strip('\n')
     team2 = l[1].strip('\n')
@@ -10,11 +12,13 @@ except IOError:
     print "Starting for the first time"
     from crontab import CronTab
     cron = CronTab()
-    job = cron.new(command = '/home/sudharsan/venv/bin/python /home/sudharsan/CricinfoScrape/score_scraper.py')
-    job.minute.every(2)
-    cron.write(user = 'sudharsan')
-    team1 = raw_input("Enter team 1 : ")
-    team2 = raw_input("Enter team 2 : ")
+    job = cron.new(command = sys.executable + ' ' +  os.path.abspath(__file__))
+    import getpass
+    cron.write(user=getpass.getuser())
+    team1 = raw_input("Team 1 : ")
+    team2 = raw_input("Team 2 : ")
+    interval = int(input("Notification interval : "))
+    job.minute.every(interval)
     f = open('teams', 'w')
     f.write(team1 + '\n' + team2)
 
@@ -31,7 +35,6 @@ for item in live_match_data:
             message = message.replace('&', '')
             notif = 'export DISPLAY=:0.0 && notify-send "%s vs %s" "%s" ' % \
                 (team1, team2, message)
-            print notif
             os.system(notif)
             break
 else:
