@@ -5,7 +5,3 @@ Setup
 * ```pip install dryscrape```  
 * ```python score_scraper.py```
 
-
-**To do**
-* Run as CLI
-* Show all live matches.
